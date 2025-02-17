@@ -80,6 +80,14 @@
     <Compile Include="Migrations\202502152216503_mig_Writer_Title.designer.cs">
       <DependentUpon>202502152216503_mig_Writer_Title.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202502170107525_mig_img.cs" />
+    <Compile Include="Migrations\202502170107525_mig_img.designer.cs">
+      <DependentUpon>202502170107525_mig_img.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202502170158501_mig_WriteStatus.cs" />
+    <Compile Include="Migrations\202502170158501_mig_WriteStatus.designer.cs">
+      <DependentUpon>202502170158501_mig_WriteStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,6 +110,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202502152216503_mig_Writer_Title.resx">
       <DependentUpon>202502152216503_mig_Writer_Title.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202502170107525_mig_img.resx">
+      <DependentUpon>202502170107525_mig_img.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202502170158501_mig_WriteStatus.resx">
+      <DependentUpon>202502170158501_mig_WriteStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
