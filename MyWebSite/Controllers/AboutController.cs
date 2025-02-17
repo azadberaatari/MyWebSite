@@ -15,7 +15,8 @@ namespace MyWebSite.Controllers
         AboutManager abm = new AboutManager(new EfAboutDal());
         public ActionResult Index()
         {
-            return View();
+            var aboutValues = abm.GetList();
+            return View(aboutValues);
         }
         [HttpGet]
         public ActionResult AddAbout()
@@ -27,6 +28,10 @@ namespace MyWebSite.Controllers
         {
             abm.AboutAdd(p);
             return RedirectToAction("Index");
+        }
+        public PartialViewResult AboutPartial()
+        {
+            return PartialView();
         }
     }
 }
