@@ -1,17 +1,20 @@
-﻿@using EntityLayer.Concrete
-@model List<Contact>
+﻿﻿@using EntityLayer.Concrete
+@model List<Message>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "InBox";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@{ string message = "";
+    string color = "";
+}
+
 
 <!DOCTYPE html>
 <html>
 
 <body class="hold-transition sidebar-mini">
 
-    <!-- Content Wrapper. Contains page content -->
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -34,7 +37,7 @@
                         <h3 class="card-title">Gelen Mesajlar</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" placeholder="Mail kutusunda ara">
+                                <input type="text" class="form-control" placeholder="Ara">
                                 <div class="input-group-append">
                                     <div class="btn btn-primary">
                                         <i class="fas fa-search"></i>
@@ -73,25 +76,46 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
+                                        if (item.IsRead == false)
+                                        {
+                                            message = "Oku";
+                                            color = "btn btn-outline-info btn-sm";
+
+                                        }
+                                        if (item.IsRead == true)
+                                        {
+                                            color = "btn btn-outline-success btn-sm";
+                                        }
                                         <tr>
                                             <td>
-                                                <div class="icheck-primary">
-                                                    <input type="checkbox" value="" id="check1">
-                                                    <label for="check1"></label>
-                                                </div>
+                                                @if (item.IsRead == false)
+                                                {
+                                                    <a class="@color" href="/Message/IsRead/@item.MessageID">
+                                                        <i class="far fa-envelope"></i>
+                                                        @message
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="@color" href="/Message/IsRead/@item.MessageID">
+                                                        <i class="far fa-envelope-open"></i>
+
+                                                    </a>
+                                                }
+
                                             </td>
-                                            <td class="mailbox-star"><a href="/Contact/GetContactDetails/@item.ContactID"><i class="fas fa-star text-warning"></i></a></td>
-                                            <td class="mailbox-name"><a href="/Contact/GetContactDetails/@item.ContactID">@item.UserName</a></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+                                            <td class="mailbox-name"><a href="/Message/GetMessageDetails/@item.MessageID">@item.SenderMail</a></td>
                                             <td class="mailbox-subject">
-                                                <b>@item.Subject</b> - @item.Message.Substring(0, 5)...
+                                                <b>@item.Subject</b> - @item.MessageContent.Substring(0, 6)...
                                             </td>
                                             <td class="mailbox-attachment"></td>
-                                            <td class="mailbox-date">5 mins ago</td>
+                                            <td class="mailbox-date">@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy"))</td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
-                            <!-- /.table --> 
+                            <!-- /.table -->
                         </div>
                         <!-- /.mail-box-messages -->
                     </div>
@@ -130,4 +154,3 @@
 
 </body>
 </html>
-
