@@ -1,13 +1,14 @@
-﻿using BusinessLayer.Abstract;
-using DataAccessLayer.Abstract;
-using EntityLayer.Concrete;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessLayer.Abstract;
+using BussinesLayer.Abstract;
+using DataAccessLayer.Abstract;
+using EntityLayer.Concrete;
 
-namespace BusinessLayer.Concrete
+namespace BussinesLayer.Concrete
 {
     public class MessageManager : IMessageService
     {
@@ -23,6 +24,11 @@ namespace BusinessLayer.Concrete
             _messageDal.Delete(message);
         }
 
+        public List<Message> GetAllRead()
+        {
+            return _messageDal.List(m => m.ReceiverMail == "admin@gail.com").Where(m => m.IsRead == false).ToList();
+        }
+
         public Message GetById(int Id)
         {
             return _messageDal.Get(m => m.MessageID == Id);
@@ -33,14 +39,29 @@ namespace BusinessLayer.Concrete
             return _messageDal.List(m => m.SenderMail == "admin@gmail.com");
         }
 
+        public List<Message> GetMessageSendBox(string sender)
+        {
+            return _messageDal.List(m => m.SenderMail == sender);
+        }
+
         public List<Message> GetMessagesInbox()
         {
             return _messageDal.List(m => m.ReceiverMail == "admin@gmail.com");
         }
 
-        public void MessageAdd(Message message)
+        public List<Message> GetMessagesInbox(string receiver)
         {
-            throw new NotImplementedException();
+            return _messageDal.List(m => m.ReceiverMail == receiver);
+        }
+
+        public void Insert(Message message)
+        {
+            _messageDal.Insert(message);
+        }
+
+        public List<Message> IsDraft()
+        {
+            return _messageDal.List(m => m.IsDraft == true);
         }
 
         public void Update(Message message)
@@ -49,3 +70,4 @@ namespace BusinessLayer.Concrete
         }
     }
 }
+

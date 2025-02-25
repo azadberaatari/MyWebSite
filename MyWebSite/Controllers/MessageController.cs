@@ -1,15 +1,19 @@
-﻿using BusinessLayer.Concrete;
-using BusinessLayer.ValidationRules;
-using DataAccessLayer.EntityFramework;
-using FluentValidation.Results;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BusinessLayer.Concrete;
+//using BussinesLayer.ValidationRules_Fluent_Validation;
+using BusinessLayer.ValidationRules;
+using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using FluentValidation.Results;
+using BussinesLayer.Concrete;
 
-namespace MyWebSite.Controllers
-{
+namespace MvcProjeKampi.Controllers
+{ 
     [AllowAnonymous]
     public class MessageController : Controller
     {
@@ -92,60 +96,60 @@ namespace MyWebSite.Controllers
             return View();
         }
 
-        //    public ActionResult DeleteMessage(int id)
-        //    {
-        //        var result = messageManager.GetById(id);
-        //        if (result.Trash == true)
-        //        {
-        //            result.Trash = false;
-        //        }
-        //        else
-        //        {
-        //            result.Trash = true;
-        //        }
-        //        messageManager.Delete(result);
-        //        return RedirectToAction("Inbox");
+        public ActionResult DeleteMessage(int id)
+        {
+            var result = messageManager.GetById(id);
+            if (result.Trash == true)
+            {
+                result.Trash = false;
+            }
+            else
+            {
+                result.Trash = true;
+            }
+            messageManager.Delete(result);
+            return RedirectToAction("Inbox");
 
-        //    }
+        }
 
-        //    public ActionResult Draft()
-        //    {
-        //        var result = messageManager.IsDraft();
-        //        return View(result);
-        //    }
+        public ActionResult Draft()
+        {
+            var result = messageManager.IsDraft();
+            return View(result);
+        }
 
-        //    public ActionResult GetDraftDetails(int id)
-        //    {
-        //        var result = messageManager.GetById(id);
-        //        return View(result);
-        //    }
+        public ActionResult GetDraftDetails(int id)
+        {
+            var result = messageManager.GetById(id);
+            return View(result);
+        }
 
-        //    public ActionResult IsRead(int id)
-        //    {
-        //        var result = messageManager.GetById(id);
-        //        if (result.IsRead == false)
-        //        {
-        //            result.IsRead = true;
-        //        }
-        //        else
-        //        {
-        //            result.IsRead = false;
-        //        }
-        //        messageManager.Update(result);
-        //        return RedirectToAction("Inbox");
-        //    }
+        public ActionResult IsRead(int id)
+        {
+            var result = messageManager.GetById(id);
+            if (result.IsRead == false)
+            {
+                result.IsRead = true;
+            }
+            else
+            {
+                result.IsRead = false;
+            }
+            messageManager.Update(result);
+            return RedirectToAction("Inbox");
+        }
 
-        //    public ActionResult MessageRead()
-        //    {
-        //        var result = messageManager.GetMessagesInbox().Where(m => m.IsRead == true).ToList();
-        //        return View(result);
-        //    }
+        public ActionResult MessageRead()
+        {
+            var result = messageManager.GetMessagesInbox().Where(m => m.IsRead == true).ToList();
+            return View(result);
+        }
 
-        //    public ActionResult MessageUnRead()
-        //    {
-        //        var result = messageManager.GetAllRead();
-        //        return View(result);
-        //    }
+        public ActionResult MessageUnRead()
+        {
+            var result = messageManager.GetAllRead();
+            return View(result);
+        }
     }
 
 }

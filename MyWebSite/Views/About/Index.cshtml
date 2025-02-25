@@ -1,4 +1,4 @@
-﻿@*﻿@using EntityLayer.Concrete
+﻿﻿@using EntityLayer.Concrete
 @model List<About>
 @{
     ViewBag.Title = "Index";
@@ -10,38 +10,38 @@
 <h2>Hakkımızda Veri Listesi</h2>
 <table class="table table-bordered">
     <tr>
-        <th>Id</th>
+        <th>ID</th>
         <th>Hakkımda</th>
         <th>Aktif veya Pasif İşlemi</th>
     </tr>
     @foreach (var item in Model)
     {
-        if (item.AboutStatus == true)
-        {
-            status = "Pasif Yap";
-        }
-        if (item.AboutStatus == false)
-        {
-            status = "Aktif Yap";
-        }
-        if (item.AboutStatus == true)
-        {
-            statusButton = "btn btn-danger";
-        }
-        if (item.AboutStatus == false)
-        {
-            statusButton = "btn btn-warning";
-        }
+        //if (item.AboutStatus == true)
+        //{
+        //    status = "Pasif Yap";
+        //}
+        //if (item.AboutStatus == false)
+        //{
+        //    status = "Aktif Yap";
+        //}
+        //if (item.AboutStatus == true)
+        //{
+        //    statusButton = "btn btn-danger";
+        //}
+        //if (item.AboutStatus == false)
+        //{
+        //    statusButton = "btn btn-warning";
+        //}
         <tr>
-            <th>@item.AboutId</th>
+            <th>@item.AboutID</th>
             <td>Başlık</td>
-            <td><a href="/About/StatusActiveAndPassive/@item.AboutId" class="@statusButton">@status</a></td>
+            <td><a href="/About/StatusActiveAndPassive/@item.AboutID" class="@statusButton">@status</a></td>
         </tr>
     }
 </table>
 @Html.Action("AboutPartial", "About")
 
-<script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>*@
+<script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
 <h3>Merhaba</h3>
 
 

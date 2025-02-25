@@ -112,6 +112,14 @@
     <Compile Include="Migrations\202502182229075_mi_ımagefile.designer.cs">
       <DependentUpon>202502182229075_mi_ımagefile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202502220145166_mig_admin_table.cs" />
+    <Compile Include="Migrations\202502220145166_mig_admin_table.designer.cs">
+      <DependentUpon>202502220145166_mig_admin_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202502250933015_mig_messageseetting.cs" />
+    <Compile Include="Migrations\202502250933015_mig_messageseetting.designer.cs">
+      <DependentUpon>202502250933015_mig_messageseetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -155,6 +163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202502182229075_mi_ımagefile.resx">
       <DependentUpon>202502182229075_mi_ımagefile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202502220145166_mig_admin_table.resx">
+      <DependentUpon>202502220145166_mig_admin_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202502250933015_mig_messageseetting.resx">
+      <DependentUpon>202502250933015_mig_messageseetting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

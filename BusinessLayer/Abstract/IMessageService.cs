@@ -1,24 +1,24 @@
-﻿using EntityLayer.Concrete;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EntityLayer.Concrete;
 
-namespace BusinessLayer.Abstract
+namespace BussinesLayer.Abstract
 {
     public interface IMessageService
     {
-        //void Insert(Message message);
+        void Insert(Message message);
         List<Message> GetMessagesInbox();
-        //List<Message> GetMessagesInbox(string receiver);
-        //List<Message> GetMessageSendBox(string sender);
+        List<Message> GetMessagesInbox(string receiver);
+        List<Message> GetMessageSendBox(string sender);
         void Delete(Message message);
         void Update(Message message);
         Message GetById(int Id);
         List<Message> GetMessageSendBox();
-        //List<Message> GetAllRead();
-        //List<Message> IsDraft();
-        void MessageAdd(Message message);
+        List<Message> GetAllRead();
+        List<Message> IsDraft();
+
     }
 }
