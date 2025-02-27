@@ -30,7 +30,6 @@ namespace MyWebSite.Controllers
         [HttpGet]
         public ActionResult NewHeading()
         {
-            ViewBag.d = id;
             List<SelectListItem> valuecategory = (from x in cm.GetList()
                                                   select new SelectListItem
                                                   {
@@ -43,11 +42,11 @@ namespace MyWebSite.Controllers
         [HttpPost]
         public ActionResult NewHeading(Heading p)
         {
-            //string writermailinfo = (string)Session["WriterMail"];
-            //var writeridinfo = c.Writers.Where(x => x.WriterMail == writermailinfo).Select(y => y.WriterID).FirstOrDefault();
-            //ViewBag.d = writeridinfo;
+            string writermailinfo = (string)Session["WriterMail"];
+            var writeridinfo = c.Writers.Where(x => x.WriterMail == writermailinfo).Select(y => y.WriterID).FirstOrDefault();
+            
             p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.WriterID = 0;
+            p.WriterID = writeridinfo;
             p.HeadingStatus = true;
             hm.HeadingAdd(p);
             return RedirectToAction("MyHeading");
@@ -77,6 +76,11 @@ namespace MyWebSite.Controllers
             HeadingValue.HeadingStatus = false;
             hm.HeadingDelete(HeadingValue);
             return RedirectToAction("MyHeading");
+        }
+        public ActionResult AllHeading(int p = 1)
+        {
+            var headings = hm.GetList().ToPagedList(p, 4);
+            return View(headings);
         }
     }
 }
