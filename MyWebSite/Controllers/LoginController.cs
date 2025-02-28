@@ -60,5 +60,11 @@ namespace MyWebSite.Controllers
 
             }
         }
+        public ActionResult LogOut()
+        {
+            //Session.Abandon();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Login");
+        }
     }
 }
