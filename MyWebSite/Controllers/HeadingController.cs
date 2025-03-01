@@ -20,6 +20,11 @@ namespace MyWebSite.Controllers
             var headingvalues = hm.GetList();
             return View(headingvalues);
         }
+        public ActionResult HeadingReport()
+        {
+            var HeadingValues = hm.GetList();
+            return View(HeadingValues);
+        }
 
         [HttpGet]
         public ActionResult AddHeading()
